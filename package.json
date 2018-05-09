@@ -1,0 +1,72 @@
+{
+    "name": "contentful-modelscreator-csharp",
+    "displayName": "Contentful ModelsCreator Csharp",
+    "description": "An extension to create strongly typed models from a Contentful content model.",
+    "version": "0.0.1",
+    "publisher": "Contentful",
+    "engines": {
+        "vscode": "^1.23.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.createModels"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "explorerResourceIsFolder",
+                    "command": "extension.createModels"
+                }
+            ],
+            "commandPalette": [{
+                "command": "extension.createModels",
+                "when": "1 == 2"
+            }]
+        },
+        "configuration": {
+            "title": "Contentful configuration",
+            "properties": {
+                "contentful.accesstoken": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Your Contentful Content Delivery API access token"
+                },
+                "contentful.spaceId": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Your Contentful space id"
+                },
+                "contentful.namespace": {
+                    "type": "string",
+                    "default": "Replace.Me",
+                    "description": "The namespace your classes should be created in"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "extension.createModels",
+                "title": "Create Contentful models",
+                "category": "Contentful"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "tslint": "^5.8.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
