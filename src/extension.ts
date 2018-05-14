@@ -34,13 +34,12 @@ export function activate(context: vscode.ExtensionContext) {
         const homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
         const terminal = vscode.window.createTerminal("contentful-create-model");
         
-        if(!fs.existsSync(`${homeDir}\\.dotnet\\contentful.modelscreator.cli.exe`)) {
+        if(!fs.existsSync(`${homeDir}\\.dotnet\\tools\\contentful.modelscreator.cli.exe`)) {
             vscode.window.showInformationMessage('Tool contentful.modelscreator.cli not installed. It will be installed globally.');
             terminal.sendText("dotnet tool install --global contentful.modelscreator.cli");
         }
 
         const command = `Contentful.ModelsCreator.Cli -a ${accessToken} -s ${spaceId} -p "${path}" -n ${namespace} -f`;
-
 
         terminal.sendText(command);
 
