@@ -1,5 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
+import * as fs from 'fs';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -30,9 +31,16 @@ export function activate(context: vscode.ExtensionContext) {
             namespace = "Replace.Me";
         }
 
+        const homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
+        const terminal = vscode.window.createTerminal("contentful-create-model");
+        
+        if(!fs.existsSync(`${homeDir}\\.dotnet\\contentful.modelscreator.cli.exe`)) {
+            vscode.window.showInformationMessage('Tool contentful.modelscreator.cli not installed. It will be installed globally.');
+            terminal.sendText("dotnet tool install --global contentful.modelscreator.cli");
+        }
+
         const command = `Contentful.ModelsCreator.Cli -a ${accessToken} -s ${spaceId} -p "${path}" -n ${namespace} -f`;
 
-        const terminal = vscode.window.createTerminal("contentful-create-model");
 
         terminal.sendText(command);
 
