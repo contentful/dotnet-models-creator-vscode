@@ -2,7 +2,7 @@
     "name": "contentful-modelscreator-csharp",
     "displayName": "Contentful ModelsCreator Csharp",
     "description": "An extension to create strongly typed models from a Contentful content model.",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "publisher": "Contentful",
     "engines": {
         "vscode": "^1.23.0"
