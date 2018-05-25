@@ -10,4 +10,4 @@ The extension adds a new command, "Create Contentful models", when you right cli
 
 The command will automatically generate a class for each content type in your selected space, complete with a property of the correct type for each field.
 
-![Example gif](models-creator.gif)
+![Example gif](https://raw.githubusercontent.com/contentful/dotnet-models-creator-vscode/master/models-creator.gif)
